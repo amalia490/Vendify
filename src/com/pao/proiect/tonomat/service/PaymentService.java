@@ -43,7 +43,7 @@ public class PaymentService {
         return false;
     }
 
-    // --- ACȚIUNEA 6: Retragerea numerarului de către Admin ---
+    // --- ACȚIUNEA 6 ---
     // Metoda reseteaza incasarile fizice dupa ce administratorul a ridicat banii
     public void retrageNumerar() {
         if (soldTonomat > 0) {
@@ -55,13 +55,13 @@ public class PaymentService {
         }
     }
 
-    // --- ACȚIUNEA 7: Aplicarea codului promoțional ---
+    // --- ACȚIUNEA 7 ---
     public double aplicaCodPromo(String textCod, double pretInitial) {
         for (PromoCode promo : coduriPromo) {
 
-            if (promo.getCode().equalsIgnoreCase(textCod) && promo.isValid()) {
-                double pretRedus = promo.calculateDiscountedPrice(pretInitial);
-                promo.markAsUsed(); // Îl marcăm ca fiind folosit ("îl ardem")
+            if (promo.getCod().equalsIgnoreCase(textCod) && promo.esteValid()) {
+                double pretRedus = promo.calculeazaPretRedus(pretInitial);
+                promo.marcheazaCaFolosit(); // Îl marcăm ca fiind folosit ("îl ardem")
                 System.out.println("Cod aplicat cu succes! Prețul a scăzut de la "
                         + pretInitial + " la " + pretRedus + " RON.");
                 return pretRedus;
@@ -70,7 +70,7 @@ public class PaymentService {
         System.out.println("Codul promoțional '" + textCod + "' este invalid sau a fost deja folosit.");
         return pretInitial;
     }
-
+    //Actiunea 4
     public boolean proceseazaPlata(double pretFinal, PaymentMethod metodaPlata) throws FonduriInsuficienteException {
         boolean plataReusita = metodaPlata.proceseazaPlata();
 
@@ -95,9 +95,9 @@ public class PaymentService {
         }
         return false;
     }
-
+    //Actiunea 4
     public void eliminaCodPromo(String textCod) {
-        coduriPromo.removeIf(c -> c.getCode().equalsIgnoreCase(textCod));
+        coduriPromo.removeIf(c -> c.getCod().equalsIgnoreCase(textCod));
         System.out.println("Codul promoțional " + textCod + " a fost eliminat.");
     }
 

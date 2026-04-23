@@ -10,7 +10,7 @@ public class Compartment implements Discountable {
     public Compartment (String codRaft, Product produs, int cantitate, int capacitateMaxima){
         this.codRaft = codRaft;
         if (produs != null) {
-            this.produs = produs.duplicate();
+            this.produs = produs.duplica();
         } else {
             this.produs = null;
         }
@@ -61,7 +61,7 @@ public class Compartment implements Discountable {
 
     public void setProdus(Product produs) {
         if(produs != null) {
-            this.produs = produs.duplicate();
+            this.produs = produs.duplica();
         } else {
             this.produs = null;
         }
@@ -91,11 +91,11 @@ public class Compartment implements Discountable {
 
         if (cantitate == 0) {
             return String.format("[%s] %s | STOC EPUIZAT | Pret: %.2f RON",
-                    codRaft, produs.getName(), produs.getPrice());
+                    codRaft, produs.getNume(), produs.getPret());
         }
 
         return String.format("[%s] %s | Stoc: %d/%d buc. | Pret: %.2f RON",
-                codRaft, produs.getName(), cantitate, capacitateMaxima, produs.getPrice());
+                codRaft, produs.getNume(), cantitate, capacitateMaxima, produs.getPret());
     }
 
     @Override

@@ -28,7 +28,7 @@ public class ReportService {
         }
         return instance;
     }
-
+    //Interogare 11
     public void afiseazaIstoricTranzactii() {
         System.out.println("\n=== ISTORIC TRANZACȚII ZIUA CURENTĂ ===");
 

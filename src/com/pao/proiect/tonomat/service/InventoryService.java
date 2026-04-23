@@ -24,13 +24,13 @@ public class InventoryService {
         }
         return instanta;
     }
-
+    // Actiunea 1
     public void adaugaRaft(Compartment raft) {
         if (raft != null) {
             this.rafturi.add(raft);
         }
     }
-
+    //Actiunea 2
     public void suplimenteazaStoc(String codRaft, int cantitateAdaugata) {
         Compartment r = obtineRaftDupaCod(codRaft);
         if (r != null) {
@@ -48,7 +48,7 @@ public class InventoryService {
         }
         System.out.println("=====================\n");
     }
-
+    //Interogare 8
     public void afiseazaProduseDisponibile() {
         System.out.println("\n=== PRODUSE DISPONIBILE ===");
         for (Compartment r : rafturi) {
@@ -57,7 +57,7 @@ public class InventoryService {
             }
         }
     }
-
+    //Interogare 9
     public void afiseazaCatalogSortatDupaPret() {
         TreeSet<Product> produseSortate = new TreeSet<>();
 
@@ -77,7 +77,7 @@ public class InventoryService {
         }
         System.out.println("========================================\n");
     }
-
+    //Actiune 3
     public Compartment obtineRaftDupaCod(String codRaft) {
         for (Compartment r : rafturi) {
             if (r.getCodRaft().equalsIgnoreCase(codRaft)) {
@@ -95,7 +95,7 @@ public class InventoryService {
         }
         r.elibereazaProdus();
     }
-
+    //Interogare 12
     public void filtreazaBauturiFaraZahar() {
         System.out.println("\n=== BĂUTURI FĂRĂ ZAHĂR DISPONIBILE ===");
         for (Compartment r : rafturi) {
@@ -107,7 +107,7 @@ public class InventoryService {
             }
         }
     }
-
+    //Interogare 10
     public void afiseazaStocCritic(int limitaMinima) {
         System.out.println("\n=== AVERTIZĂRI STOC CRITIC (< " + limitaMinima + " buc) ===");
         boolean gasitAvertizari = false;
