@@ -1,8 +1,8 @@
-# 🛒 Smart Vending Machine (Sistem de Gestiune Tonomat Inteligent)
+# Smart Vending Machine (Sistem de Gestiune Tonomat Inteligent)
 
 Acest proiect reprezinta o aplicatie Java pentru simularea si gestionarea unui tonomat inteligent. Arhitectura respecta principiile OOP (Incapsulare, Mostenire, Polimorfism, Abstractie) si utilizeaza sabloane de proiectare (ex: Singleton) pentru a separa logica de business de modelele de date.
 
-## 📂 1. Arhitectura si Clasele Proiectului
+## 1. Arhitectura si Clasele Proiectului
 
 Proiectul este structurat pe pachete standard (Model, Service, Exception), dupa cum urmeaza:
 
@@ -41,7 +41,7 @@ Proiectul este structurat pe pachete standard (Model, Service, Exception), dupa 
 
 ---
 
-## ⚙️ 2. Actiuni si Interogari (Functionalitati)
+## 2. Actiuni si Interogari (Functionalitati)
 
 Sistemul expune o serie de functionalitati accesibile prin clasa `Main`, delegate catre serviciile specializate:
 
