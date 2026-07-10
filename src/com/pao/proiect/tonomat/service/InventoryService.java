@@ -4,6 +4,7 @@ import com.pao.proiect.tonomat.exception.StocEpuizatException;
 import com.pao.proiect.tonomat.model.Compartment;
 import com.pao.proiect.tonomat.model.Drink;
 import com.pao.proiect.tonomat.model.Product;
+import com.pao.proiect.tonomat.model.StockObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,20 @@ public class InventoryService {
     private static InventoryService instanta;
 
     private List<Compartment> rafturi;
+
+    private List<StockObserver> observatori = new ArrayList<>();
+
+    // 2. Metoda prin care adminul se aboneaza la alerte
+    public void adaugaObservator(StockObserver obs) {
+        observatori.add(obs);
+    }
+
+    // 3. Metoda care trimite alertele tuturor adminilor
+    private void declanseazaAlertaStoc(String codRaft, String numeProdus, int cantitate) {
+        for (StockObserver obs : observatori) {
+            obs.notificaStocCritic(codRaft, numeProdus, cantitate);
+        }
+    }
 
     private InventoryService() {
         this.rafturi = new ArrayList<>();
@@ -87,6 +102,28 @@ public class InventoryService {
         return null;
     }
 
+    // --- Cautare aproximativa dupa cuvinte cheie ---
+    public Compartment cautaRaftAproximativ(String textClient) {
+        if (textClient == null || textClient.trim().isEmpty()) {
+            return null;
+        }
+
+        String textMic = textClient.toLowerCase().trim();
+
+        for (Compartment r : rafturi) {
+            if (r.getProdus() != null && r.getCantitate() > 0) {
+                String numeProdus = r.getProdus().getNume().toLowerCase();
+
+                // Verificam daca clientul a scris un cuvant cheie
+                if (numeProdus.contains(textMic) || textMic.contains(numeProdus)) {
+                    return r;
+                }
+            }
+        }
+
+        return null; // Nu am gasit nicio asemanare
+    }
+
     public void elibereazaProdus(String codRaft) throws StocEpuizatException {
         Compartment r = obtineRaftDupaCod(codRaft);
 
@@ -94,6 +131,9 @@ public class InventoryService {
             throw new StocEpuizatException("Ne pare rău! Produsul de la raftul " + codRaft + " este epuizat sau nu există.");
         }
         r.elibereazaProdus();
+        if (r.getCantitate() <= 2) {
+            declanseazaAlertaStoc(r.getCodRaft(), r.getProdus().getNume(), r.getCantitate());
+        }
     }
     //Interogare 12
     public void filtreazaBauturiFaraZahar() {

@@ -12,7 +12,8 @@ public class ReportService {
     private static ReportService instance;
     private List<Transaction> istoricTranzactii;
 
-    private ReportService() {
+    private ReportService()
+    {
         this.istoricTranzactii = new ArrayList<>();
     }
 
@@ -36,7 +37,6 @@ public class ReportService {
             System.out.println("Nu a fost înregistrată nicio vânzare astăzi.");
         } else {
             for (Transaction t : istoricTranzactii) {
-                // Presupunem că ai o metodă toString() clară în models.Transaction
                 System.out.println(t.toString());
             }
             System.out.println("Total tranzacții procesate: " + istoricTranzactii.size());

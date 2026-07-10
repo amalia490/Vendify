@@ -1,6 +1,6 @@
 package com.pao.proiect.tonomat.model;
 
-public class Administrator {
+public class Administrator implements StockObserver{
     private String nume;
     private String idAngajat;
     private String parola;
@@ -8,7 +8,7 @@ public class Administrator {
     private static int contorId = 1;
 
     // Constructor cu parametri
-    public Administrator(String nume, String parola, int nivelAcces) {
+    public Administrator(String nume, String parola, int nivelAcces){
         this.nume = nume;
         this.idAngajat = "ADM-" + contorId;
         contorId++;
@@ -61,5 +61,11 @@ public class Administrator {
     @Override
     public String toString() {
         return "Admin: " + nume + " (ID: " + idAngajat + ", Nivel Acces: " + nivelAcces + ")";
+    }
+
+    @Override
+    public void notificaStocCritic(String codRaft, String numeProdus, int cantitateRamasa) {
+        System.out.println("[ALERTA SMS catre Admin " + this.nume + "]");
+        System.out.println("-> Urgent: Produsul " + numeProdus + " de la raftul " + codRaft + " mai are doar " + cantitateRamasa + " bucati!");
     }
 }

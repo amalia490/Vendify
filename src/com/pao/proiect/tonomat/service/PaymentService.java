@@ -61,7 +61,7 @@ public class PaymentService {
 
             if (promo.getCod().equalsIgnoreCase(textCod) && promo.esteValid()) {
                 double pretRedus = promo.calculeazaPretRedus(pretInitial);
-                promo.marcheazaCaFolosit(); // Îl marcăm ca fiind folosit ("îl ardem")
+                promo.marcheazaCaFolosit(); // il marcam ca fiind folosit
                 System.out.println("Cod aplicat cu succes! Prețul a scăzut de la "
                         + pretInitial + " la " + pretRedus + " RON.");
                 return pretRedus;

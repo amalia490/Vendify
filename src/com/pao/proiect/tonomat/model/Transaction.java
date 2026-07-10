@@ -38,7 +38,9 @@ public class Transaction {
     public String getNumeProdus() { return numeProdus; }
     public double getPretPlatit() { return pretPlatit; }
 
-
+    public PaymentMethod getMetodaPlata() {
+        return metodaPlata;
+    }
 
     @Override
     public String toString() {
